@@ -4,7 +4,6 @@ $ses_id = $this->session->userdata('ses_id');
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +30,7 @@ $ses_id = $this->session->userdata('ses_id');
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-          <a class="navbar-brand brand-logo" href="<?= base_url() ?>C_umkm/dashboard"><img src="<?= base_url() ?>assets/images/logo-dashboard.png" alt=""/></a>
+          <a class="navbar-brand brand-logo" href="<?= base_url() ?>C_masyarakat/dashboard"><img src="<?= base_url() ?>assets/images/logo-dashboard.png" alt=""/></a>
 
           <a class="navbar-brand brand-logo-mini" href="index.html"><img src="<?= base_url() ?>assets/images/logo-dashboard-2.png" alt=""/></a>
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -47,14 +46,14 @@ $ses_id = $this->session->userdata('ses_id');
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               <!-- <img src="images/faces/face5.jpg" alt="profile"/> -->
-              <span class="nav-profile-name">UMKM ( <?= $ses_nama ?> ) </span>
+              <span class="nav-profile-name">Masyarakat ( <?= $ses_nama ?> ) </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="<?= base_url() ?>C_umkm/profil">
+              <a class="dropdown-item" href="<?= base_url() ?>C_masyarakat/profil">
                 <i class="mdi mdi-account text-primary"></i>
-                Profil UMKM
+                Profil Masyarakat
               </a>
-              <a class="dropdown-item" href="<?= base_url() ?>C_login/logout_umkm">
+              <a class="dropdown-item" href="<?= base_url() ?>C_login/logout_masyarakat">
                 <i class="mdi mdi-logout text-primary"></i>
                 Logout
               </a>
@@ -72,21 +71,14 @@ $ses_id = $this->session->userdata('ses_id');
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url() ?>C_umkm/dashboard">
+            <a class="nav-link" href="<?= base_url() ?>C_masyarakat/dashboard">
               <i class="mdi mdi-home menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url() ?>C_umkm/masyarakat">
-              <i class="mdi mdi-account-card-details menu-icon"></i>
-              <span class="menu-title">Data Masyarkat</span>
-            </a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link" href="<?= base_url() ?>C_umkm/info">
+            <a class="nav-link" href="<?= base_url() ?>C_masyarakat/info">
               <i class="mdi mdi mdi-pin menu-icon"></i>
               <span class="menu-title">Info Masyarakat</span>
             </a>

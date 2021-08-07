@@ -30,8 +30,28 @@
 <script src="<?= base_url() ?>assets/js/data-table.js"></script>
 <script src="<?= base_url() ?>assets/js/jquery.dataTables.js"></script>
 <script src="<?= base_url() ?>assets/js/dataTables.bootstrap4.js"></script>
-<!-- End custom js for this page-->
-<!-- <script src="<?= base_url() ?>assets/js/jquery.cookie.js" type="text/javascript"></script> -->
+
+<script>
+$(document).ready(function(){
+    setDatePicker()
+    setDateRangePicker(".startdate", ".enddate")
+    setMonthPicker()
+    setYearPicker()
+    setYearRangePicker(".startyear", ".endyear")
+})
+
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("datetimepicker-dashboard").flatpickr({
+      inline: true,
+      prevArrow: "<span title=\"Previous month\">&laquo;</span>",
+      nextArrow: "<span title=\"Next month\">&raquo;</span>",
+    });
+  });
+
+  $(document).ready(function() {
+    $('#example').DataTable();
+  });
+</script>
 </body>
 
 </html>

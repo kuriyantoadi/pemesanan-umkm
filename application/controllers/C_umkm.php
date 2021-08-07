@@ -19,7 +19,6 @@ class C_umkm extends CI_Controller {
 	public function index()
 	{
     $this->load->view('umkm/index');
-
   }
 
 	public function asli()
@@ -204,7 +203,7 @@ class C_umkm extends CI_Controller {
 			'kondisi' => $kondisi
 		);
 
-			$this->M_umkm->info_masyarakat_tambah_up($tambah_info);
+			$this->M_umkm->info_tambah_up($tambah_info);
 			$this->session->set_flashdata('msg', '
 							<div class="alert alert-success alert-dismissible fade show" role="alert">
 								<strong>Tambah Informasi Berhasil</strong>
@@ -241,7 +240,64 @@ class C_umkm extends CI_Controller {
 			$this->load->view('template/footer');
 		}
 
+		public function info_edit_up()
+		{
+			$id_info = $this->input->post('id_info');
+			$id_umkm = $this->input->post('id_umkm');
+			$tgl_upload = $this->input->post('tgl_upload');
+			$judul_info = $this->input->post('judul_info');
+			$isi_info = $this->input->post('isi_info');
+			$kondisi = $this->input->post('kondisi');
+
+			$kode_info = array('id_info' => $id_info);
+
+			$data_edit = array(
+				'id_umkm' => $id_umkm,
+				'tgl_upload' => $tgl_upload,
+				'judul_info' => $judul_info,
+				'isi_info' => $isi_info,
+				'kondisi' => $kondisi
+			);
+
+	 		$this->M_umkm->info_edit_up($data_edit, $kode_info);
+
+			$this->session->set_flashdata('msg', '
+								<div class="alert alert-primary alert-dismissible fade show" role="alert">
+									<strong>Edit Informasi berhasil</strong>
+
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>');
+				redirect ('C_umkm/info');
+
+			}
+
+			public function info_detail($id_info)
+			{
+				$data['tampil'] = $this->M_umkm->info_detail($id_info);
+
+				$this->load->view('template/header-umkm');
+				$this->load->view('umkm/info_detail', $data);
+				$this->load->view('template/footer');
+			}
+
 //menu info akhir
+
+
+//menu profil awal
+
+			public function profil()
+			{
+				$ses_id_umkm = $this->session->userdata('ses_id');
+				$data['tampil'] = $this->M_umkm->profil($ses_id_umkm);
+
+				$this->load->view('template/header-umkm');
+				$this->load->view('umkm/profil', $data);
+				$this->load->view('template/footer');
+			}
+
+// menu profil akhir
 
 
 }

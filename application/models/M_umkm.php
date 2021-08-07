@@ -63,7 +63,7 @@ class M_umkm extends CI_Model{
     return $hasil;
   }
 
-  function info_masyarakat_tambah_up($tambah_info){
+  function info_tambah_up($tambah_info){
     $this->db->insert('tb_info',$tambah_info);
   }
 
@@ -78,6 +78,23 @@ class M_umkm extends CI_Model{
     $this->db->where('id_info',$id_info);
     $query = $this->db->get()->result();
     return $query;
+  }
+
+  function info_edit_up($data_edit, $kode_info){
+    $this->db->where($kode_info);
+    $this->db->update('tb_info',$data_edit);
+  }
+
+  function info_detail($id_info){
+    $this->db->where('id_info', $id_info);
+    $hasil = $this->db->get('tb_info')->result();
+    return $hasil;
+  }
+
+  function profil($ses_id_umkm){
+    $this->db->where('id_umkm', $ses_id_umkm);
+    $hasil = $this->db->get('tb_umkm')->result();
+    return $hasil;
   }
 
 }
