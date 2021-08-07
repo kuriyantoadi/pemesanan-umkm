@@ -20,7 +20,7 @@
     + Color Functions Mixins
     + Badge Mixins
     + Blockquote Mixins
-    
+
   * Core Styles
     + Reset Styles
     + Fonts
@@ -43,7 +43,7 @@
     + Lists
     + Tables
   * Plugin overrides
-    + Data-tables  
+    + Data-tables
   * Landing screens
     + Auth
   * Layout
@@ -19114,7 +19114,8 @@ code {
 .nav-tabs .nav-item .nav-link.active {
   border: 0;
   border-bottom: 3px solid #5646ff;
-  color: #4d83ff;
+  color: #ffffff;
+
 }
 
 /*-------------------------------------------------------------------*/

@@ -23,13 +23,12 @@
           <div class="col-lg-4 mx-auto">
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
               <div class="brand-logo">
-                <center><img src="../../images/logo.svg" alt="logo">
+                <center><img src="<?= base_url() ?>assets/images/logo.png" alt="logo">
               </div>
               <h4><center>Halaman Login UMKM</h4>
               <h6 class="font-weight-light"><center></h6>
                 <p><center>
-                  Sistem Informasi Pengelolahan Data Bantuan UMKM Berbasis Website
-                  <br>PT. Agro Serang Berkah
+                  PT. Agro Serang Berkah
                 </p>
                 <?= form_open('C_login/umkm_login'); ?>
                 <div class="form-group">
