@@ -69,7 +69,7 @@ class C_login extends CI_Controller {
       $data = $cek_login->row_array();
 
       if ($data['status']=='aktif') {
-        $this->session->set_userdata('user', true);
+        $this->session->set_userdata('umkm', true);
         $this->session->set_userdata('ses_id', $data['id_umkm']);
         $this->session->set_userdata('ses_username', $data['username']);
         redirect('C_umkm/dashboard');

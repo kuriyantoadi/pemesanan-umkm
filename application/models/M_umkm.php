@@ -43,8 +43,8 @@ class M_umkm extends CI_Model{
     return $query;
   }
 
-  function masyarakat_edit_up($data_edit, $kode_masyarakat){
-    $this->db->where($kode_masyarakat);
+  function masyarakat_edit_up($data_edit, $id_komoditi_agro){
+    $this->db->where($id_komoditi_agro);
     $this->db->update('tb_masyarakat',$data_edit);
   }
 

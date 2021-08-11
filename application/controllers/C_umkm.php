@@ -9,7 +9,7 @@ class C_umkm extends CI_Controller {
 			$this->load->model('M_umkm');
 
 			// session login
-			if ($this->session->userdata('user') != true) {
+			if ($this->session->userdata('umkm') != true) {
 				$url = base_url('C_login/user');
 				redirect($url);
 			}
