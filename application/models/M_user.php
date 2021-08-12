@@ -68,6 +68,12 @@ class M_user extends CI_Model{
     return $hasil;
   }
 
+  function profil($ses_id_user){
+    $this->db->where('id_user', $ses_id_user);
+    $hasil = $this->db->get('tb_user')->result();
+    return $hasil;
+  }
+
 }
 
  ?>

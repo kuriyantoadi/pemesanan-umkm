@@ -10,7 +10,7 @@ class C_umkm extends CI_Controller {
 
 			// session login
 			if ($this->session->userdata('umkm') != true) {
-				$url = base_url('C_login/user');
+				$url = base_url('C_login/umkm');
 				redirect($url);
 			}
 	}
@@ -157,7 +157,6 @@ class C_umkm extends CI_Controller {
 
 	public function masyarakat_detail($id_masyarakat)
 	{
-		// $kode_masyarakat = array('id_masyarakat' => $id_masyarakat);
 		$data['tampil_masyarakat'] = $this->M_umkm->masyarakat_detail($id_masyarakat);
 
 		$this->load->view('template/header-umkm');
@@ -298,6 +297,62 @@ class C_umkm extends CI_Controller {
 			}
 
 // menu profil akhir
+
+
+// awal pemesanan komoditi
+
+			public function kode_pesanan()
+			{
+				$ses_id_umkm = $this->session->userdata('ses_id');
+				$data['tampil'] = $this->M_umkm->kode_pesanan($ses_id_umkm);
+
+				$this->load->view('template/header-umkm');
+				$this->load->view('umkm/kode_pesanan', $data);
+				$this->load->view('template/footer');
+			}
+
+			public function kode_pesanan_tambah()
+			{
+				$table 	= 'tb_kode_pesanan';
+				$field	= 'kode_pesanan';
+
+				$lastKode = $this->M_umkm->getMax($table, $field);
+
+				//mengambil 4 karakter dari belakang
+				$noUrut = (int) substr($lastKode, -4, 4);
+				$noUrut++;
+
+				$str= 'K';
+				$kode_pesanan = $str . sprintf('%04s', $noUrut);
+
+				//id UMKM
+				$ses_id_umkm = $this->session->userdata('ses_id');
+
+
+				$tambah_kode_pesanan = array(
+					'id_umkm' => $ses_id_umkm,
+					'kode_pesanan' => $kode_pesanan,
+					'status_kode'=> 'belum selesai'
+				);
+
+				$this->M_umkm->kode_pesanan_tambah($tambah_kode_pesanan);
+
+				redirect ('C_umkm/kode_pesanan');
+
+			}
+
+			public function pemesanan_komoditi()
+			{
+				$data['tampil'] = $this->M_umkm->komoditi_agro();
+
+				$this->load->view('template/header-umkm');
+				$this->load->view('umkm/pemesanan_komoditi', $data);
+				$this->load->view('template/footer');
+			}
+
+			
+
+// akhir pemesanan komoditi
 
 
 }

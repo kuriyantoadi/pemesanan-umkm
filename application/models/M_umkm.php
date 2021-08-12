@@ -97,6 +97,33 @@ class M_umkm extends CI_Model{
     return $hasil;
   }
 
+  function komoditi_agro(){
+    $tampil = $this->db->get('tb_komoditi_agro')->result();
+    return $tampil;
+  }
+
+  function kode_pesanan($ses_id_umkm){
+    $this->db->where('id_umkm', $ses_id_umkm);
+    $hasil = $this->db->get('tb_kode_pesanan')->result();
+    return $hasil;
+  }
+
+//kode urut
+  public function getMax($table = null, $field = null)
+  {
+    $this->db->select_max($field);
+    return $this->db->get($table)->row_array()[$field];
+  }
+
+  public function kode_pesanan_tambah($tambah_kode_pesanan)
+  {
+    $this->db->insert('tb_kode_pesanan',$tambah_kode_pesanan);
+  }
+
+
+
+
+
 }
 
  ?>

@@ -79,6 +79,20 @@ $ses_id = $this->session->userdata('ses_id');
           </li>
 
           <li class="nav-item">
+            <a class="nav-link" href="<?= base_url() ?>C_umkm/kode_pesanan">
+              <i class="mdi mdi mdi-cart menu-icon"></i>
+              <span class="menu-title">Pemesanan komoditi</span>
+            </a>
+          </li>
+
+          <!-- <li class="nav-item">
+            <a class="nav-link" href="<?= base_url() ?>C_umkm/masyarakat">
+              <i class="mdi mdi-account-card-details menu-icon"></i>
+              <span class="menu-title">Status komoditi</span>
+            </a>
+          </li> -->
+
+          <li class="nav-item">
             <a class="nav-link" href="<?= base_url() ?>C_umkm/masyarakat">
               <i class="mdi mdi-account-card-details menu-icon"></i>
               <span class="menu-title">Data Masyarkat</span>

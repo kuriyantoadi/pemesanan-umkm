@@ -68,20 +68,14 @@ class C_login extends CI_Controller {
     if ($cek_login->num_rows() > 0) {
       $data = $cek_login->row_array();
 
-      if ($data['status']=='aktif') {
+      if ($data['status_umkm']=='aktif') {
         $this->session->set_userdata('umkm', true);
         $this->session->set_userdata('ses_id', $data['id_umkm']);
         $this->session->set_userdata('ses_username', $data['username']);
         redirect('C_umkm/dashboard');
 
-      // }elseif ($data['status']=='kasubag') {
-      //   $this->session->set_userdata('kasubag', true);
-      //   $this->session->set_userdata('ses_id', $data['id']);
-      //   $this->session->set_userdata('ses_username', $data['username']);
-
-        // redirect('C_kasubag');
       }else {
-        $url = base_url('C_user');
+        $url = base_url('C_umkm');
         echo $this->session->set_flashdata('msg', 'Username atau password salah');
         redirect($url);
       }
@@ -89,7 +83,7 @@ class C_login extends CI_Controller {
     }
 
     $this->session->set_flashdata('msg', 'Username atau password salah');
-    $url = base_url('C_user/index');
+    $url = base_url('C_umkm/index');
     redirect($url);
   }
 
@@ -146,6 +140,13 @@ class C_login extends CI_Controller {
     $this->session->sess_destroy();
     $url = base_url();
     redirect('C_login/masyarakat');
+  }
+
+  public function logout_user()
+  {
+    $this->session->sess_destroy();
+    $url = base_url();
+    redirect('C_login/user');
   }
 
 }

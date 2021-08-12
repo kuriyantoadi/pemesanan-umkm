@@ -28,6 +28,16 @@ class C_user extends CI_Controller {
   }
 
 
+  public function profil()
+  {
+    $ses_id_user = $this->session->userdata('ses_id');
+    $data['tampil'] = $this->M_user->profil($ses_id_user);
+
+    $this->load->view('template/header-user');
+    $this->load->view('user/profil', $data);
+    $this->load->view('template/footer');
+  }
+
 //komoditi awal
   public function komoditi()
   {
