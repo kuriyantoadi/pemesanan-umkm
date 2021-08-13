@@ -29,7 +29,7 @@
 
 
               <center><button type="submit" class="btn btn-primary btn-sm">Submit</button>
-              <a href="<?= base_url() ?>C_user/info_masyarakat" class="btn btn-warning btn-sm" >Kembali</a>
+              <a href="<?= base_url() ?>C_user/komoditi" class="btn btn-warning btn-sm" >Kembali</a>
               <?php
                 // }
                 echo form_close();

@@ -85,6 +85,13 @@ $ses_id = $this->session->userdata('ses_id');
           </li>
 
           <li class="nav-item">
+            <a class="nav-link" href="<?= base_url() ?>C_user/pemesanan">
+              <i class="mdi mdi-message-text-outline  menu-icon"></i>
+              <span class="menu-title">Data Pemesanan</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a class="nav-link" href="<?= base_url() ?>C_user/data_umkm">
               <i class="mdi mdi-hexagon-outline menu-icon"></i>
               <span class="menu-title">Data UMKM</span>

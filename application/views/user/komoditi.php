@@ -36,6 +36,9 @@
             <?php
             $no=1;
             foreach ($tampil as $row) {
+            $harga_satuan = $row->harga_satuan;
+            $harga_satuan_rp = number_format($harga_satuan,2,',','.');
+            // echo "Rp. ".$hasil_format_angka;
              ?>
 
               <tr>
@@ -43,7 +46,7 @@
                 <td><center><?= $row->nama_komoditi; ?></td>
                 <td><center><?= $row->volume; ?></td>
                 <td><center><?= $row->satuan_kg; ?></td>
-                <td><center><?= $row->harga_satuan; ?></td>
+                <td><center><?php echo 'Rp. '.$harga_satuan_rp; ?></td>
 
                 <td><center>
                   <a href="<?php echo site_url('C_user/komoditi_hapus/'.$row->id_komoditi_agro); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin menhapus data <?= $row->nama_komoditi ?> ?')">Hapus</a>

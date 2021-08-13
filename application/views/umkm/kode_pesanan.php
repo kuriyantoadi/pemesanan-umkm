@@ -39,6 +39,7 @@
 
                 <td><center>
                   <a href="<?php echo site_url('C_umkm/pemesanan_komoditi/'.$row->kode_pesanan); ?>" class="btn btn-sm btn-info">Lihat</a>
+                  <a href="<?php echo site_url('C_umkm/bukti_pesanan/'.$row->kode_pesanan) ?>" class="btn btn-sm btn-warning">Cetak</a>
                 </td>
               </tr>
               <?php } ?>

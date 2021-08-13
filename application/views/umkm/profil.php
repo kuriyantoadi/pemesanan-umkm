@@ -30,7 +30,7 @@
               </tr>
               <tr>
                 <td>Status UMKM</td>
-                <td><?= $row->status ?></td>
+                <td><?= $row->status_umkm ?></td>
               </tr>
 
             </table>
