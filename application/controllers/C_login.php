@@ -11,6 +11,11 @@ class C_login extends CI_Controller {
 	}
 
 //Login User
+  public function index()
+  {
+    $this->load->view('login');
+  }
+
   public function user()
   {
     $this->load->view('user/index');
@@ -32,12 +37,12 @@ class C_login extends CI_Controller {
         $this->session->set_userdata('ses_username', $data['username']);
         redirect('C_user/dashboard');
 
-      }elseif ($data['status']=='kasubag') {
-        $this->session->set_userdata('kasubag', true);
-        $this->session->set_userdata('ses_id', $data['id']);
+      }elseif ($data['status']=='pimpinan') {
+        $this->session->set_userdata('pimpinan', true);
+        $this->session->set_userdata('ses_id', $data['id_user']);
         $this->session->set_userdata('ses_username', $data['username']);
 
-        redirect('C_kasubag');
+        redirect('C_pimpinan/dashboard');
       }else {
         $url = base_url('C_user');
         echo $this->session->set_flashdata('msg', 'Username atau password salah');
