@@ -248,5 +248,118 @@ class C_user extends CI_Controller {
 
   // Data UMKM Akhir
 
+  //data pemesanan
+
+    public function data_pemesanan()
+    {
+      $data['tampil'] = $this->M_user->pemesanan();
+
+      $this->load->view('template/header-user');
+      $this->load->view('user/data_pemesanan', $data);
+      $this->load->view('template/footer');
+    }
+
+    public function data_pemesanan_reset($kode_pesanan)
+    {
+      $data_reset = array(
+        'status_kode' => 'Menunggu Konfirmasi'
+      );
+
+      $this->M_user->data_pemesanan_reset($kode_pesanan, $data_reset);
+      redirect ('C_user/data_pemesanan_detail/'.$kode_pesanan);
+    }
+
+    public function data_pemesanan_hapus($kode_pesanan)
+    {
+     $this->M_user->data_pemesanan_hapus($kode_pesanan);
+
+     $this->session->set_flashdata('msg', '
+              <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <p>Hapus data pemesanan berhasil</p>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>');
+      redirect ('C_user/data_pemesanan');
+    }
+
+    public function data_pemesanan_detail($kode_pesanan)
+    {
+      $data['tampil'] = $this->M_user->data_pemesanan_detail($kode_pesanan);
+      $data['total_sum'] = $this->M_user->pemesanan_komoditi_harga($kode_pesanan);
+      $data['status_kode'] = $this->M_user->data_pemesanan_detail_status($kode_pesanan);
+      $data['kode_pesanan'] = $kode_pesanan;
+
+      $this->load->view('template/header-user');
+      $this->load->view('user/data_pemesanan_detail', $data);
+      $this->load->view('template/footer');
+    }
+
+
+    public function data_pemesanan_tersedia($id_pemesanan, $kode_pesanan)
+    {
+      $data_tersedia = array(
+        'kondisi' => 'Tersedia'
+      );
+
+      $this->M_user->data_pemesanan_tersedia($id_pemesanan, $data_tersedia);
+      redirect ('C_user/data_pemesanan_detail/'.$kode_pesanan);
+    }
+
+    public function data_pemesanan_tidak_tersedia($id_pemesanan, $kode_pesanan)
+    {
+      $data_tersedia = array(
+        'kondisi' => 'Tidak Tersedia'
+      );
+
+      $this->M_user->data_pemesanan_tidak_tersedia($id_pemesanan, $data_tersedia);
+      redirect ('C_user/data_pemesanan_detail/'.$kode_pesanan);
+    }
+
+    public function data_pemesanan_tolak($kode_pesanan)
+    {
+      $data_tolak = array(
+        'status_kode' => 'tidak diterima'
+      );
+
+      $this->M_user->data_pemesanan_tolak($kode_pesanan, $data_tolak);
+      redirect ('C_user/data_pemesanan/');
+    }
+
+    public function data_pemesanan_terima($kode_pesanan)
+    {
+      $tgl = date('d-m-Y');
+      $data_tolak = array(
+        'status_kode' => 'Dalam Pengiriman',
+        'tgl_pengiriman' => $tgl
+      );
+
+      $this->M_user->data_pemesanan_terima($kode_pesanan, $data_tolak);
+      redirect ('C_user/data_pemesanan/');
+    }
+
+
+// awal konfirmasi
+    public function data_konfirmasi()
+    {
+      $data['tampil'] = $this->M_user->konfirmasi_pesanan();
+
+      $this->load->view('template/header-user');
+      $this->load->view('user/data_konfirmasi', $data);
+      $this->load->view('template/footer');
+    }
+
+    public function konfirmasi_pesanan_riwayat($kode_pesanan)
+    {
+      $data['tampil'] = $this->M_user->konfirmasi_pesanan_riwayat($kode_pesanan);
+      $data['kode_pesanan'] = $kode_pesanan;
+
+      $this->load->view('template/header-user');
+      $this->load->view('user/data_konfirmasi_riwayat', $data);
+      $this->load->view('template/footer');
+    }
+
+// akhir konfirmasi
 
 }

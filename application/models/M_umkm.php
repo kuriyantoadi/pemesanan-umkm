@@ -208,6 +208,49 @@ class M_umkm extends CI_Model{
     return $hasil;
   }
 
+  public function konfirmasi_pesanan($ses_id_umkm)
+  {
+    $this->db->where('id_umkm', $ses_id_umkm);
+    $hasil = $this->db->get('tb_kode_pesanan')->result();
+    return $hasil;
+  }
+
+  public function konfirmasi_pesanan_diterima($kode_pesanan)
+  {
+    $this->db->where('kode_pesanan', $kode_pesanan);
+    $hasil = $this->db->get('tb_pemesanan')->result();
+    return $hasil;
+  }
+
+  public function konfirmasi_pesanan_diterima_up($pesanan_diterima, $id_pemesanan)
+  {
+    $this->db->where('id_pemesanan',$id_pemesanan);
+    $this->db->update('tb_pemesanan',$pesanan_diterima);
+  }
+
+  public function konfirmasi_pesanan_belum_diterima($pesanan_diterima, $id_pemesanan)
+  {
+    $this->db->where('id_pemesanan',$id_pemesanan);
+    $this->db->update('tb_pemesanan',$pesanan_diterima);
+  }
+
+  public function konfirmasi_pesanan_selesai($pesanan_selesai, $kode_pesanan)
+  {
+    $this->db->where('kode_pesanan',$kode_pesanan);
+    $this->db->update('tb_kode_pesanan',$pesanan_selesai);
+  }
+
+  public function konfirmasi_pesanan_riwayat($kode_pesanan)
+  {
+    $this->db->select('*');
+    $this->db->from('tb_kode_pesanan');
+    $this->db->join('tb_pemesanan','tb_pemesanan.kode_pesanan = tb_kode_pesanan.kode_pesanan');
+    $this->db->where('tb_pemesanan.kode_pesanan',$kode_pesanan);
+    $query = $this->db->get()->result();
+    return $query;
+  }
+
+
 }
 
  ?>

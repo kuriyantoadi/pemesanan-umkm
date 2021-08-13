@@ -350,10 +350,10 @@ class C_umkm extends CI_Controller {
 					$status_kode = $row->status_kode;
 				}
 
-				if ($status_kode == "selesai") {
+				if (!empty($status_kode)) {
 					$this->session->set_flashdata('msg', '
 									<div class="alert alert-danger alert-dismissible fade show" role="alert">
-										<p>Status kode pemesanan sudah selesai</strong>
+										<p>Akses lihat tidak di ijinkan, hubungi operator PT Agro untuk Edit Pemesanan</strong>
 
 										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
@@ -477,14 +477,10 @@ class C_umkm extends CI_Controller {
 					redirect('C_umkm/pemesanan_komoditi/'.$kode_pesanan);
 				}
 
-
 				$tgl = date('d-m-Y');
 
-				echo $tgl;
-				var_dump($kode_pesanan);
-
 				$tambah_pemesanan = array(
-					'status_kode' => 'selesai',
+					'status_kode' => 'Menunggu Konfirmasi',
 					'tgl_pesan' => $tgl
 				);
 
@@ -507,6 +503,77 @@ class C_umkm extends CI_Controller {
 			}
 
 // akhir pemesanan komoditi
+
+// awal komoditi konfirmasi
+
+			public function konfirmasi_pesanan()
+			{
+				$ses_id_umkm = $this->session->userdata('ses_id');
+				$data['tampil'] = $this->M_umkm->konfirmasi_pesanan($ses_id_umkm);
+
+				$this->load->view('template/header-umkm');
+				$this->load->view('umkm/konfirmasi_pesanan', $data);
+				$this->load->view('template/footer');
+			}
+
+			public function konfirmasi_pesanan_diterima($kode_pesanan)
+			{
+				$data['tampil'] = $this->M_umkm->konfirmasi_pesanan_diterima($kode_pesanan);
+				$data['kode_pesanan'] = $kode_pesanan;
+
+				$this->load->view('template/header-umkm');
+				$this->load->view('umkm/konfirmasi_pesanan_diterima', $data);
+				$this->load->view('template/footer');
+			}
+
+			public function konfirmasi_pesanan_diterima_up($id_pemesanan, $kode_pesanan)
+			{
+				$pesanan_diterima = array(
+					'kondisi'=> 'Diterima'
+				);
+
+				$this->M_umkm->konfirmasi_pesanan_diterima_up($pesanan_diterima, $id_pemesanan);
+				redirect ('C_umkm/konfirmasi_pesanan_diterima/'.$kode_pesanan);
+			}
+
+			public function konfirmasi_pesanan_belum_diterima($id_pemesanan, $kode_pesanan)
+			{
+				$pesanan_diterima = array(
+					'kondisi'=> 'Belum diterima'
+				);
+
+				$this->M_umkm->konfirmasi_pesanan_belum_diterima($pesanan_diterima, $id_pemesanan);
+				redirect ('C_umkm/konfirmasi_pesanan_diterima/'.$kode_pesanan);
+			}
+
+			public function konfirmasi_pesanan_selesai()
+			{
+				$tgl = date('d-m-Y');
+				$ulasan_umkm = $this->input->post('ulasan_umkm');
+				$kode_pesanan = $this->input->post('kode_pesanan');
+
+				$pesanan_selesai = array(
+					'status_kode'=> 'Sudah diterima',
+					'tgl_diterima' => $tgl,
+					'ulasan_umkm' => $ulasan_umkm
+				);
+
+				$this->M_umkm->konfirmasi_pesanan_selesai($pesanan_selesai, $kode_pesanan);
+				redirect ('C_umkm/konfirmasi_pesanan/');
+
+			}
+
+			public function konfirmasi_pesanan_riwayat($kode_pesanan)
+			{
+				$data['tampil'] = $this->M_umkm->konfirmasi_pesanan_riwayat($kode_pesanan);
+				$data['kode_pesanan'] = $kode_pesanan;
+
+				$this->load->view('template/header-umkm');
+				$this->load->view('umkm/konfirmasi_pesanan_riwayat', $data);
+				$this->load->view('template/footer');
+			}
+
+// akhir komoditi konfirmasi
 
 
 }

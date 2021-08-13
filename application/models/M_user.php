@@ -74,6 +74,92 @@ class M_user extends CI_Model{
     return $hasil;
   }
 
+  public function pemesanan()
+  {
+    $this->db->select('*');
+    $this->db->from('tb_kode_pesanan');
+    $this->db->join('tb_umkm','tb_umkm.id_umkm = tb_kode_pesanan.id_umkm');
+    $query = $this->db->get()->result();
+    return $query;
+  }
+
+  public function data_pemesanan_reset($kode_pesanan, $data_reset)
+  {
+    $this->db->where('kode_pesanan',$kode_pesanan);
+    $this->db->update('tb_kode_pesanan',$data_reset);
+  }
+
+  public function data_pemesanan_hapus($kode_pesanan)
+  {
+    $this->db->where('kode_pesanan',$kode_pesanan);
+    $this->db->delete('tb_kode_pesanan');
+
+    $this->db->where('kode_pesanan',$kode_pesanan);
+    $this->db->delete('tb_pemesanan');
+  }
+
+  public function data_pemesanan_detail($kode_pesanan)
+  {
+    $this->db->where('kode_pesanan', $kode_pesanan);
+    $hasil = $this->db->get('tb_pemesanan')->result();
+    return $hasil;
+  }
+
+  public function data_pemesanan_detail_status($kode_pesanan)
+  {
+    $this->db->where('kode_pesanan', $kode_pesanan);
+    $hasil = $this->db->get('tb_kode_pesanan')->result();
+    return $hasil;
+  }
+
+  public function pemesanan_komoditi_harga($kode_pesanan)
+  {
+    $this->db->select_sum('sub_total');
+    $this->db->where('kode_pesanan', $kode_pesanan);
+    $hasil = $this->db->get('tb_pemesanan')->result(); //
+    return $hasil;
+  }
+
+  public function data_pemesanan_tersedia($id_pemesanan, $data_tersedia)
+  {
+    $this->db->where('id_pemesanan',$id_pemesanan);
+    $this->db->update('tb_pemesanan',$data_tersedia);
+  }
+
+  public function data_pemesanan_tidak_tersedia($id_pemesanan, $data_tersedia)
+  {
+    $this->db->where('id_pemesanan',$id_pemesanan);
+    $this->db->update('tb_pemesanan',$data_tersedia);
+  }
+
+  public function data_pemesanan_tolak($kode_pesanan, $data_tolak)
+  {
+    $this->db->where('kode_pesanan',$kode_pesanan);
+    $this->db->update('tb_kode_pesanan',$data_tolak);
+  }
+
+  public function data_pemesanan_terima($kode_pesanan, $data_tolak)
+  {
+    $this->db->where('kode_pesanan',$kode_pesanan);
+    $this->db->update('tb_kode_pesanan',$data_tolak);
+  }
+
+  public function konfirmasi_pesanan()
+  {
+    $tampil = $this->db->get('tb_kode_pesanan')->result();
+    return $tampil;
+  }
+
+  public function konfirmasi_pesanan_riwayat($kode_pesanan)
+  {
+    $this->db->select('*');
+    $this->db->from('tb_kode_pesanan');
+    $this->db->join('tb_pemesanan','tb_pemesanan.kode_pesanan = tb_kode_pesanan.kode_pesanan');
+    $this->db->where('tb_pemesanan.kode_pesanan',$kode_pesanan);
+    $query = $this->db->get()->result();
+    return $query;
+  }
+
 }
 
  ?>

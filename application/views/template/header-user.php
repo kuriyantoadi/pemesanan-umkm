@@ -79,15 +79,22 @@ $ses_id = $this->session->userdata('ses_id');
 
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url() ?>C_user/komoditi">
-              <i class="mdi mdi-cart menu-icon"></i>
+              <i class="mdi mdi-food-variant  menu-icon"></i>
               <span class="menu-title">Data Komoditi</span>
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url() ?>C_user/pemesanan">
-              <i class="mdi mdi-message-text-outline  menu-icon"></i>
+            <a class="nav-link" href="<?= base_url() ?>C_user/data_pemesanan">
+              <i class="mdi mdi-cart menu-icon"></i>
               <span class="menu-title">Data Pemesanan</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="<?= base_url() ?>C_user/data_konfirmasi">
+              <i class="mdi mdi-message-text-outline  menu-icon"></i>
+              <span class="menu-title">Data Konfirmasi</span>
             </a>
           </li>
 

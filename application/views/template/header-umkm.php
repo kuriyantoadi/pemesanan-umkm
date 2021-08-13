@@ -85,12 +85,12 @@ $ses_id = $this->session->userdata('ses_id');
             </a>
           </li>
 
-          <!-- <li class="nav-item">
-            <a class="nav-link" href="<?= base_url() ?>C_umkm/masyarakat">
-              <i class="mdi mdi-account-card-details menu-icon"></i>
-              <span class="menu-title">Status komoditi</span>
+          <li class="nav-item">
+            <a class="nav-link" href="<?= base_url() ?>C_umkm/konfirmasi_pesanan">
+              <i class="mdi mdi-comment-check-outline menu-icon"></i>
+              <span class="menu-title">Konfirmasi Pemesanan</span>
             </a>
-          </li> -->
+          </li>
 
           <li class="nav-item">
             <a class="nav-link" href="<?= base_url() ?>C_umkm/masyarakat">
