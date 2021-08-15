@@ -46,7 +46,7 @@
                 <td><center><?= $row->status_kode; ?></td>
                 <td><center>
                   <?php if ($status_kode == 'Dalam Pengiriman') { ?>
-                    <a href="<?php echo site_url('C_user/konfirmasi_pesanan_diterima/'.$row->kode_pesanan); ?>" class="btn btn-sm btn-primary">Diterima</a>
+                    <p>Meunggu pengiriman diterima</p>
                   <?php }elseif ($status_kode == 'Sudah diterima') { ?>
                     <a href="<?php echo site_url('C_user/konfirmasi_pesanan_riwayat/'.$row->kode_pesanan); ?>" class="btn btn-sm btn-info">Riwayat</a>
                   <?php } ?>

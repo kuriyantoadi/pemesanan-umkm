@@ -350,7 +350,7 @@ class C_umkm extends CI_Controller {
 					$status_kode = $row->status_kode;
 				}
 
-				if (!empty($status_kode)) {
+				if ($status_kode != 'belum selesai' && (!empty($status_kode))) {
 					$this->session->set_flashdata('msg', '
 									<div class="alert alert-danger alert-dismissible fade show" role="alert">
 										<p>Akses lihat tidak di ijinkan, hubungi operator PT Agro untuk Edit Pemesanan</strong>
@@ -485,6 +485,15 @@ class C_umkm extends CI_Controller {
 				);
 
 				$this->M_umkm->pemesanan_selesai($tambah_pemesanan, $kode_pesanan);
+				$this->session->set_flashdata('msg', '
+								<div class="alert alert-success alert-dismissible fade show" role="alert">
+									<p>Pesanan anda menunggu proses dari PT. Agro</strong>
+
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>');
+				redirect('C_umkm/kode_pesanan/');
 			}
 
 			public function bukti_pesanan($kode_pesanan)
@@ -532,9 +541,34 @@ class C_umkm extends CI_Controller {
 					'kondisi'=> 'Diterima'
 				);
 
+				$pesanan_diterima_cek = $this->M_umkm->pesanan_diterima($id_pemesanan);
+
+				foreach ($pesanan_diterima_cek as $row) {
+					$id_umkm = $row->id_umkm;
+					$nama_komoditi = $row->nama_komoditi;
+					$jumlah_komoditi = $row->jumlah_komoditi;
+					$harga_satuan = $row->harga_satuan;
+					$satuan_kg = $row->satuan_kg;
+					$volume = $row->harga_satuan;
+				}
+
+				$tgl = date('d-m-Y');
+
+				$pesanan_diterima_db = array(
+					'id_umkm' => $id_umkm,
+					'nama_komoditi' => $nama_komoditi,
+					'jumlah_komoditi' => $jumlah_komoditi,
+					'satuan_kg' => $satuan_kg,
+					'harga_satuan' => $harga_satuan,
+					'volume' => $volume,
+					'tgl_diterima' => $tgl
+				);
+
 				$this->M_umkm->konfirmasi_pesanan_diterima_up($pesanan_diterima, $id_pemesanan);
+				$this->M_umkm->pesanan_diterima_db($pesanan_diterima_db);
 				redirect ('C_umkm/konfirmasi_pesanan_diterima/'.$kode_pesanan);
 			}
+
 
 			public function konfirmasi_pesanan_belum_diterima($id_pemesanan, $kode_pesanan)
 			{
@@ -574,6 +608,20 @@ class C_umkm extends CI_Controller {
 			}
 
 // akhir komoditi konfirmasi
+
+
+//awal gudang komoditi
+			public function data_komoditi()
+			{
+				$ses_id_umkm = $this->session->userdata('ses_id');
+				$data['tampil'] = $this->M_umkm->data_komoditi($ses_id_umkm);
+
+				$this->load->view('template/header-umkm');
+				$this->load->view('umkm/data_komoditi', $data);
+				$this->load->view('template/footer');
+			}
+
+//akhir gudang komoditi
 
 
 }

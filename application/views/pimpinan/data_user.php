@@ -7,7 +7,7 @@
       <div class="col-md-12 stretch-card">
         <div class="card">
           <div class="card-body">
-            <h1 align='center' style="margin-bottom: 30px" class="display-4">Data UMKM</h1>
+            <h1 align='center' style="margin-bottom: 30px" class="display-4">Data User</h1>
 
             <?= $this->session->flashdata('msg') ?>
             <!-- <a class="btn btn-primary btn-sm" style="margin-bottom: 20px" href="<?= base_url() ?>C_user/data_umkm_tambah">Tambah</a> -->

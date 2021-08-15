@@ -250,6 +250,24 @@ class M_umkm extends CI_Model{
     return $query;
   }
 
+  public function data_komoditi($ses_id_umkm)
+  {
+    $this->db->where('id_umkm', $ses_id_umkm);
+    $hasil = $this->db->get('tb_komoditi_umkm')->result();
+    return $hasil;
+  }
+
+  public function pesanan_diterima($id_pemesanan)
+  {
+    $this->db->where('id_pemesanan', $id_pemesanan);
+    $hasil = $this->db->get('tb_pemesanan')->result();
+    return $hasil;
+  }
+
+  public function pesanan_diterima_db($pesanan_diterima_db)
+  {
+    $this->db->insert('tb_komoditi_umkm',$pesanan_diterima_db);
+  }
 
 }
 

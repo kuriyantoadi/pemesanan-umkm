@@ -126,10 +126,10 @@ class C_login extends CI_Controller {
     }
 
     $this->session->set_flashdata('msg', 'Username atau password salah');
-    echo 'error2';
+    // echo 'error2';
 
-    // $url = base_url('C_login/masyarakat');
-    // redirect($url);
+    $url = base_url('C_login/masyarakat');
+    redirect($url);
   }
 
 

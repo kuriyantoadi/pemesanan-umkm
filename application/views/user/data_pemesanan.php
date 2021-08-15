@@ -49,7 +49,7 @@
                 <td><center><?= $row->status_kode; ?></td>
                 <td><center>
                   <a href="<?php echo site_url('C_user/data_pemesanan_hapus/'.$row->kode_pesanan) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin menghapus data pesanan <?= $row->kode_pesanan ?> ?')">Hapus</a>
-                  <a href="<?php echo site_url('C_umkm/bukti_pesanan/'.$row->kode_pesanan) ?>" class="btn btn-sm btn-warning">Cetak</a>
+                  <a href="<?php echo site_url('C_user/bukti_pesanan/'.$row->kode_pesanan) ?>" class="btn btn-sm btn-warning">Cetak</a>
                   <a href="<?php echo site_url('C_user/data_pemesanan_detail/'.$row->kode_pesanan); ?>" class="btn btn-sm btn-info">Detail</a>
                 </td>
               </tr>

@@ -7,6 +7,7 @@ class C_user extends CI_Controller {
 	{
 			parent::__construct();
 			$this->load->model('M_user');
+      $this->load->model('M_umkm');
 
 			// session login
 			if ($this->session->userdata('user') != true) {
@@ -361,5 +362,20 @@ class C_user extends CI_Controller {
     }
 
 // akhir konfirmasi
+
+    public function bukti_pesanan($kode_pesanan)
+    {
+      $tampil_kode_pesanan = $this->M_umkm->bukti_pesanan_kode($kode_pesanan);
+
+      foreach ($tampil_kode_pesanan as $row) {
+        $id_umkm = $row->id_umkm;
+      }
+
+      $data['tampil_umkm'] = $this->M_umkm->bukti_pesanan_umkm($id_umkm);
+      $data['tampil_pemesanan'] = $this->M_umkm->bukti_pesanan_pemesanan($kode_pesanan);
+      $data['tampil_kode_pesanan'] = $this->M_umkm->bukti_pesanan_kode($kode_pesanan);
+
+      $this->load->view('umkm/bukti_pesanan', $data);
+    }
 
 }
