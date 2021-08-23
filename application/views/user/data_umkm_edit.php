@@ -26,6 +26,10 @@
                 <label for="exampleInputPassword4">Alamat UMKM</label>
                 <input type="text" class="form-control" name="alamat_umkm" value="<?= $row->alamat_umkm ?>" required>
               </div>
+            <div class="form-group">
+              <label for="exampleInputPassword4">username UMKM</label>
+              <input type="text" class="form-control" name="username" value="<?= $row->username ?>" required>
+            </div>
               <div class="form-group">
                 <label>Status UMKM</label>
                 <select class="form-control" name="status_umkm" required>

@@ -13,10 +13,11 @@ class M_umkm extends CI_Model{
     return $tampil;
   }
 
-  function tampil_masyarakat(){
+  function tampil_masyarakat($ses_id_umkm){
     $this->db->select('*');
     $this->db->from('tb_masyarakat');
     $this->db->join('tb_umkm','tb_umkm.id_umkm = tb_masyarakat.id_umkm');
+    $this->db->where('tb_masyarakat.id_umkm',$ses_id_umkm);
     $query = $this->db->get()->result();
     return $query;
   }

@@ -23,6 +23,14 @@
                 <input type="text" class="form-control" name="alamat_umkm" required>
               </div>
               <div class="form-group">
+                <label for="exampleInputPassword4">Username</label>
+                <input type="text" class="form-control" name="username" required>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword4">Password</label>
+                <input type="text" class="form-control" name="password" required>
+              </div>
+              <div class="form-group">
                 <label>Status UMKM</label>
                 <select class="form-control" name="status_umkm" required>
                   <option value="">Pilihan</option>

@@ -23,7 +23,7 @@
                 <input type="text" class="form-control" name="volume" value="<?= $row->volume ?>" required>
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword4">Satuan (kg)</label>
+                <label for="exampleInputPassword4">Satuan (Kg/Bks/Karung)</label>
                 <input type="text" class="form-control" name="satuan_kg" value="<?= $row->satuan_kg ?>" required>
               </div>
               <div class="form-group">

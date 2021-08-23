@@ -163,12 +163,16 @@ class C_user extends CI_Controller {
     $nama_umkm = $this->input->post('nama_umkm');
     $kec_umkm = $this->input->post('kec_umkm');
     $alamat_umkm = $this->input->post('alamat_umkm');
+    $username = $this->input->post('username');
+    $password = $this->input->post('password');
     $status_umkm = $this->input->post('status_umkm');
 
     $tambah_umkm = array(
       'nama_umkm' => $nama_umkm,
       'kec_umkm' => $kec_umkm,
       'alamat_umkm' => $alamat_umkm,
+      'username' => $username,
+      'password' => md5($password),
       'status_umkm' => $status_umkm
     );
 
@@ -213,6 +217,7 @@ class C_user extends CI_Controller {
     {
       $id_umkm = $this->input->post('id_umkm');
       $nama_umkm = $this->input->post('nama_umkm');
+      $username = $this->input->post('username');
       $kec_umkm = $this->input->post('kec_umkm');
       $alamat_umkm = $this->input->post('alamat_umkm');
       $status_umkm = $this->input->post('status_umkm');
@@ -220,6 +225,7 @@ class C_user extends CI_Controller {
       $data_edit = array(
         'nama_umkm' => $nama_umkm,
         'kec_umkm' => $kec_umkm,
+        'username' => $username,
         'alamat_umkm' => $alamat_umkm,
         'status_umkm' => $status_umkm
       );

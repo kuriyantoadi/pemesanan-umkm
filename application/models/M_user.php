@@ -116,6 +116,7 @@ class M_user extends CI_Model{
   {
     $this->db->select_sum('sub_total');
     $this->db->where('kode_pesanan', $kode_pesanan);
+    $this->db->where('kondisi', 'Tersedia');
     $hasil = $this->db->get('tb_pemesanan')->result(); //
     return $hasil;
   }

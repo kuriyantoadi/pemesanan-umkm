@@ -38,7 +38,8 @@ class C_umkm extends CI_Controller {
 // Masyarakat
 	public function masyarakat()
 	{
-		$data['tampil_masyarakat'] = $this->M_umkm->tampil_masyarakat();
+		$ses_id_umkm = $this->session->userdata('ses_id');
+		$data['tampil_masyarakat'] = $this->M_umkm->tampil_masyarakat($ses_id_umkm);
 
 		$this->load->view('template/header-umkm');
 		$this->load->view('umkm/masyarakat', $data);

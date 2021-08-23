@@ -24,11 +24,12 @@
                   <center>Volume
                 </th>
                 <th>
-                  <center>Satuan (kg)
+                  <center>Satuan (Kg/Bks/Karung)
                 </th>
                 <th>
                   <center>Harga Satuan
                 </th>
+                <th><center>Tanggal Diterima</th>
                 <!-- <th><center>Pilihan</th> -->
               </tr>
             </thead>
@@ -47,6 +48,7 @@
                 <td><center><?= $row->volume; ?></td>
                 <td><center><?= $row->satuan_kg; ?></td>
                 <td><center><?php echo 'Rp. '.$harga_satuan_rp; ?></td>
+                <td><center><?= $row->tgl_diterima; ?></td>
                 <!-- <td><center>
                   <a href="<?php echo site_url('C_umkm/komoditi_keluar/'.$row->id_komoditi_agro); ?>" class="btn btn-sm btn-danger">komoditi Keluar</a>
                   <a href="<?php echo site_url('C_umkm/komoditi_masuk/'.$row->id_komoditi_agro); ?>" class="btn btn-sm btn-info">Komoditi Masuk</a>

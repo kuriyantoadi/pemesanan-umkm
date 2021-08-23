@@ -12,19 +12,19 @@
             <?php echo form_open('C_user/komoditi_tambah_up'); ?>
               <div class="form-group">
                 <label for="exampleInputName1">Nama Komoditi</label>
-                <input type="text" class="form-control" name="nama_komoditi" value="" required>
+                <input type="text" class="form-control" name="nama_komoditi" value="" placeholder="Nama Komoditi" required>
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail3">Volume</label>
                 <input type="text" class="form-control" name="volume" placeholder="Volume" required>
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword4">Satuan (kg)</label>
-                <input type="text" class="form-control" name="satuan_kg" placeholder="Volume" required>
+                <label for="exampleInputPassword4">Satuan (Kg/Bks/Karung)</label>
+                <input type="text" class="form-control" name="satuan_kg" placeholder="Satuan" required>
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword4">Harga</label>
-                <input type="text" class="form-control" name="harga_satuan" placeholder="Volume" required>
+                <input type="text" class="form-control" name="harga_satuan" placeholder="Harga" required>
               </div>
 
 

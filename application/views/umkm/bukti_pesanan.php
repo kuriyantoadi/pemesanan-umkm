@@ -56,7 +56,7 @@
         <th><center>Nama Komoditi</th>
         <th><center>Harga Satuan</th>
         <th><center>Volume</th>
-        <th><center>Satuan kg</th>
+        <th><center>Satuan (Kg/Bks/Karung)</th>
         <th><center>Jumlah</th>
         <th><center>Sub Total</th>
       </tr>

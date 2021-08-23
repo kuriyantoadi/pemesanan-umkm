@@ -40,7 +40,7 @@
                   <a href="<?php echo site_url('C_user/data_umkm_hapus/'.$row->id_umkm); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin menhapus data <?= $row->nama_umkm ?> ?')">Hapus</a>
                   <a href="<?php echo site_url('C_user/data_umkm_edit/'.$row->id_umkm); ?>" class="btn btn-sm btn-info">Edit</a>
                   <a href="<?php echo site_url('C_user/data_umkm_detail/'.$row->id_umkm); ?>" class="btn btn-sm btn-success">Detail</a>
-
+                  <!-- <a href="<?php echo site_url('C_user/data_umkm_password/'.$row->id_umkm); ?>" class="btn btn-sm btn-success">Ganti Password</a> -->
                 </td>
               </tr>
               <?php } ?>

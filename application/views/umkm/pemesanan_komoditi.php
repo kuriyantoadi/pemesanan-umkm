@@ -23,7 +23,7 @@
                   <center>Volume
                 </th>
                 <th>
-                  <center>Satuan (kg)
+                  <center>Satuan (Kg/Bks/Karung)
                 </th>
                 <th>
                   <center>Harga Satuan
@@ -74,7 +74,7 @@
                   <center>Volume
                 </th>
                 <th>
-                  <center>Satuan (kg)
+                  <center>Satuan (Kg/Bks/Karung)
                 </th>
                 <th>
                   <center>Harga Satuan
@@ -93,6 +93,7 @@
 
             $id_pemesanan = $row->id_pemesanan;
             $sub_total = $row->sub_total;
+            $harga_satuan = $row->harga_satuan;
 
             $harga_satuan_rp = number_format($harga_satuan,2,',','.');
             $sub_total_rp = number_format($sub_total,2,',','.');
@@ -108,8 +109,8 @@
                 <td><center><?= 'Rp. '. $sub_total_rp ?></td>
                 <td><center>
                   <a href="<?php echo site_url('C_umkm/pemesanan_komoditi_jumlah_hapus/'.$row->id_pemesanan.'/'.$kode_pesanan); ?>"
-                    class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin menhapus data <?= $row->nama_komoditi ?> ?')">Hapus</a>
-                  <a href="<?php echo site_url('C_umkm/pemesanan_komoditi_jumlah/'.$row->id_pemesanan.'/'.$kode_pesanan); ?>" class="btn btn-sm btn-primary">Jumlah</a>
+                    class="btn btn-xs btn-danger" onclick="return confirm('Anda yakin menhapus data <?= $row->nama_komoditi ?> ?')">Hapus</a>
+                  <a href="<?php echo site_url('C_umkm/pemesanan_komoditi_jumlah/'.$row->id_pemesanan.'/'.$kode_pesanan); ?>" class="btn btn-xs btn-primary">Jumlah</a>
                 </td>
               </tr>
 
@@ -129,7 +130,7 @@
               </tr>
 
             </table>
-            <center style="margin-top: 20px"><a href="<?= base_url() ?>C_umkm/pemesanan_selesai/<?= $kode_pesanan.'/'.$total ?>" class="btn btn-sm btn-success" onclick="return confirm('Anda yakin pemesanan sudah selesai ?')">Seleai Pemesanan</a>
+            <center style="margin-top: 20px"><a href="<?= base_url() ?>C_umkm/pemesanan_selesai/<?= $kode_pesanan.'/'.$total ?>" class="btn btn-sm btn-success" onclick="return confirm('Anda yakin pemesanan sudah selesai ?')">Selesai Pemesanan</a>
           </div>
         </div>
       </div>

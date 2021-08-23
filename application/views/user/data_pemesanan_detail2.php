@@ -47,9 +47,16 @@
             foreach ($tampil as $row) {
             $kode_pesanan = $row->kode_pesanan;
             $harga_satuan = $row->harga_satuan;
-            $sub_total = $row->sub_total;
-            $harga_satuan_rp = number_format($harga_satuan,2,',','.');
-            $sub_total_rp = number_format($sub_total,2,',','.');
+            $kondisi = $row->kondisi;
+            // echo $kondisi;
+            if ($kondisi == 'Tidak Tersedia') {
+              $sub_total = 0;
+            }else {
+              $sub_total = $row->sub_total;
+              $harga_satuan_rp = number_format($harga_satuan,2,',','.');
+              $sub_total_rp = number_format($sub_total,2,',','.');
+            }
+
            ?>
 
               <tr>

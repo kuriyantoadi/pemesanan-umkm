@@ -25,7 +25,7 @@
                   <center>Volume
                 </th>
                 <th>
-                  <center>Satuan (kg)
+                  <center>Satuan (Kg/Bks/Karung)
                 </th>
 
                 <th>
