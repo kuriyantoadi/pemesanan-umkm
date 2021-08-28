@@ -181,6 +181,7 @@ class C_umkm extends CI_Controller {
 	{
 		$ses_id_umkm = $this->session->userdata('ses_id');
 		$data['tampil_masyarakat'] = $ses_id_umkm;
+		$data['kode_pesanan'] = $this->M_umkm->info_kode_pemesanan($ses_id_umkm);
 
 		$this->load->view('template/header-umkm');
 		$this->load->view('umkm/info-masyarakat-tambah', $data);
@@ -194,13 +195,15 @@ class C_umkm extends CI_Controller {
 		$judul_info = $this->input->post('judul_info');
 		$isi_info = $this->input->post('isi_info');
 		$kondisi = $this->input->post('kondisi');
+		$kode_pengambilan = $this->input->post('kode_pengambilan');
 
 		$tambah_info = array(
 			'id_umkm' => $id_umkm,
 			'tgl_upload' => $tgl_upload,
 			'judul_info' => $judul_info,
 			'isi_info' => $isi_info,
-			'kondisi' => $kondisi
+			'kondisi' => $kondisi,
+			'kode_pengambilan' => $kode_pengambilan
 		);
 
 			$this->M_umkm->info_tambah_up($tambah_info);
@@ -595,7 +598,6 @@ class C_umkm extends CI_Controller {
 
 				$this->M_umkm->konfirmasi_pesanan_selesai($pesanan_selesai, $kode_pesanan);
 				redirect ('C_umkm/konfirmasi_pesanan/');
-
 			}
 
 			public function konfirmasi_pesanan_riwayat($kode_pesanan)

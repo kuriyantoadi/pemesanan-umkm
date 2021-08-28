@@ -54,6 +54,8 @@
                 <td><center>
                   <?php if ($kondisi == 'Tidak Tersedia') { ?>
                     Komoditi tidak tersedia
+                  <?php }elseif ($kondisi == 'Diterima') {  ?>
+                    Sudah dikonfirmasi
                   <?php }else{ ?>
                     <a href="<?php echo site_url('C_umkm/konfirmasi_pesanan_belum_diterima/'.$row->id_pemesanan.'/'.$kode_pesanan); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin komoditi <?= $row->nama_komoditi ?> belum diterima ?')">Belum diterima</a>
                     <a href="<?php echo site_url('C_umkm/konfirmasi_pesanan_diterima_up/'.$row->id_pemesanan.'/'.$kode_pesanan); ?>" class="btn btn-sm btn-primary" onclick="return confirm('Anda yakin komoditi <?= $row->nama_komoditi ?> sudah diterima ?')">Diterima</a>

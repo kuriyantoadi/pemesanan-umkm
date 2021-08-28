@@ -24,6 +24,17 @@
                 <textarea name="isi_info" class="form-control" rows="8" cols="80" required></textarea>
               </div>
               <div class="form-group">
+                <label>Kode Pengambilan Komoditi</label>
+                <select class="form-control" name="kode_pengambilan" required>
+                  <option value="">Pilihan</option>
+                  <?php
+                  foreach ($kode_pesanan as $row) {
+                 ?>
+                  <option value="<?= $row->kode_pesanan ?>"> <?= $row->kode_pesanan ?></option>
+                <?php } ?>
+                </select>
+              </div>
+              <div class="form-group">
                 <label>Status Informasi</label>
                 <select class="form-control" name="kondisi" required>
                   <option value="">Pilihan</option>

@@ -68,6 +68,12 @@ class M_umkm extends CI_Model{
     $this->db->insert('tb_info',$tambah_info);
   }
 
+  function info_kode_pemesanan($ses_id_umkm){
+    $this->db->where('id_umkm', $ses_id_umkm);
+    $hasil = $this->db->get('tb_kode_pesanan')->result();
+    return $hasil;
+  }
+
   function info_hapus($id_info){
     $this->db->where($id_info);
     $this->db->delete('tb_info');

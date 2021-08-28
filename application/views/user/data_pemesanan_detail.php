@@ -96,7 +96,7 @@
             </table>
             <center style="margin-top: 20px">
               <a href="<?= base_url() ?>C_user/data_pemesanan/" class="btn btn-sm btn-warning">Kembali</a>
-              <a href="<?= base_url() ?>C_user/data_pemesanan_reset/<?= $kode_pesanan ?>" class="btn btn-sm btn-info" onclick="return confirm('Anda yakin melakukan reset?')">Reset</a>
+              <!-- <a href="<?= base_url() ?>C_user/data_pemesanan_reset/<?= $kode_pesanan ?>" class="btn btn-sm btn-info" onclick="return confirm('Anda yakin melakukan reset?')">Reset</a> -->
 
               <?php if ($status_kode == 'Menunggu Konfirmasi') { ?>
                 <a href="<?= base_url() ?>C_user/data_pemesanan_tolak/<?= $kode_pesanan ?>" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin menerima ?')">Tolak Pesanan</a>
