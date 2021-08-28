@@ -7,6 +7,7 @@ class C_umkm extends CI_Controller {
 	{
 			parent::__construct();
 			$this->load->model('M_umkm');
+			$this->load->model('M_masyarakat');
 
 			// session login
 			if ($this->session->userdata('umkm') != true) {
@@ -45,6 +46,50 @@ class C_umkm extends CI_Controller {
 		$this->load->view('umkm/masyarakat', $data);
 		$this->load->view('template/footer');
 	}
+
+	public function masyarakat_password($id_masyarakat)
+	{
+		$data['tampil'] = $this->M_umkm->masyarakat_detail($id_masyarakat);
+
+		$this->load->view('template/header-umkm');
+		$this->load->view('umkm/masyarakat_password', $data);
+		$this->load->view('template/footer');
+	}
+
+	public function masyarakat_password_up()
+	{
+		$id_masyarakat = $this->input->post('id_masyarakat');
+		$password_baru = $this->input->post('password_baru');
+		$password_konfirmasi = $this->input->post('password_konfirmasi');
+
+		if ($password_baru != $password_konfirmasi) {
+			$this->session->set_flashdata('msg', '
+							<div class="alert alert-danger alert-dismissible fade show" role="alert">
+								<p>Password konfirmasi anda tidak sesuai</strong>
+
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>');
+			redirect('C_umkm/masyarakat');
+		}
+
+			$password_baru = array(
+				'password' => md5($password_konfirmasi),
+			);
+
+			$this->M_umkm->masyarakat_password_up($password_baru, $id_masyarakat);
+
+			$this->session->set_flashdata('msg', '
+							<div class="alert alert-primary alert-dismissible fade show" role="alert">
+								<p>Passowrd berhasil diganti</strong>
+
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>');
+			redirect('C_umkm/masyarakat');
+		}
 
 	public function masyarakat_tambah()
 	{
@@ -300,6 +345,76 @@ class C_umkm extends CI_Controller {
 				$this->load->view('template/footer');
 			}
 
+
+			public function password()
+			{
+				$ses_id_umkm = $this->session->userdata('ses_id');
+				$data['tampil'] = $this->M_umkm->profil($ses_id_umkm);
+
+				$this->load->view('template/header-umkm');
+				$this->load->view('umkm/password', $data);
+				$this->load->view('template/footer');
+			}
+
+			public function password_up()
+			{
+				$id_umkm = $this->input->post('id_umkm');
+				$password_lama = $this->input->post('password_lama');
+				$password_baru = $this->input->post('password_baru');
+				$password_konfirmasi = $this->input->post('password_konfirmasi');
+
+				$cek_pass = $this->M_umkm->cek_password($id_umkm);
+
+				//tampil passowrd lama
+				foreach ($cek_pass as $row)
+				{
+					$cek_password = $row->password;
+				}
+
+				if ($password_baru != $password_konfirmasi) {
+					$this->session->set_flashdata('msg', '
+									<div class="alert alert-danger alert-dismissible fade show" role="alert">
+										<p>Password konfirmasi anda tidak sesuai</strong>
+
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>');
+					redirect('C_umkm/password');
+				}
+
+
+				//cek password lama
+				if (md5($password_lama) != $cek_password ) {
+					$this->session->set_flashdata('msg', '
+									<div class="alert alert-danger alert-dismissible fade show" role="alert">
+										<p>Password lama anda tidak sesuai dangan Data</strong>
+
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>');
+					redirect('C_umkm/password');
+				}else{
+					$password_baru = array(
+						'password' => md5($password_konfirmasi),
+					);
+
+					$this->M_umkm->passowrd_baru($password_baru, $id_umkm);
+
+					$this->session->set_flashdata('msg', '
+									<div class="alert alert-primary alert-dismissible fade show" role="alert">
+										<p>Passowrd berhasil diganti</strong>
+
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>');
+					redirect('C_umkm/profil');
+
+				}
+
+			}
 // menu profil akhir
 
 
@@ -363,7 +478,8 @@ class C_umkm extends CI_Controller {
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>');
-					redirect('C_umkm/kode_pesanan/');				}
+					redirect('C_umkm/kode_pesanan/');
+				}
 
 				$data['tampil'] = $this->M_umkm->komoditi_agro($kode_pesanan);
 				$data['tampil_pemesanan'] = $this->M_umkm->pemesanan_komoditi($kode_pesanan);
@@ -554,6 +670,7 @@ class C_umkm extends CI_Controller {
 					$harga_satuan = $row->harga_satuan;
 					$satuan_kg = $row->satuan_kg;
 					$volume = $row->harga_satuan;
+					$kode_pesanan = $row->kode_pesanan;
 				}
 
 				$tgl = date('d-m-Y');
@@ -565,7 +682,8 @@ class C_umkm extends CI_Controller {
 					'satuan_kg' => $satuan_kg,
 					'harga_satuan' => $harga_satuan,
 					'volume' => $volume,
-					'tgl_diterima' => $tgl
+					'tgl_diterima' => $tgl,
+					'kode_pesanan' => $kode_pesanan
 				);
 
 				$this->M_umkm->konfirmasi_pesanan_diterima_up($pesanan_diterima, $id_pemesanan);

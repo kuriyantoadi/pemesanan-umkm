@@ -27,7 +27,8 @@
               </tr>
 
             </table>
-              <center><a style="margin-top: 20px" href="<?= base_url() ?>C_user/dashboard" class="btn btn-warning btn-sm" >Kembali</a>
+              <center><a style="margin-top: 20px" href="<?= base_url() ?>C_pimpinan/password" class="btn btn-danger btn-sm" >Password</a>
+              <a style="margin-top: 20px" href="<?= base_url() ?>C_pimpinan/dashboard" class="btn btn-warning btn-sm" >Kembali</a>
               <?php echo form_close();
                 }
               ?>

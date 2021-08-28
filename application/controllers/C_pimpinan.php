@@ -116,6 +116,76 @@ class C_pimpinan extends CI_Controller {
     $this->load->view('template/footer');
   }
 
+  public function password()
+  {
+    $ses_id_user = $this->session->userdata('ses_id');
+    $data['tampil'] = $this->M_pimpinan->profil($ses_id_user);
+
+    $this->load->view('template/header-pimpinan');
+    $this->load->view('pimpinan/password', $data);
+    $this->load->view('template/footer');
+  }
+
+  public function password_up()
+  {
+    $id_pimpinan = $this->input->post('id_user');
+    $password_lama = $this->input->post('password_lama');
+    $password_baru = $this->input->post('password_baru');
+    $password_konfirmasi = $this->input->post('password_konfirmasi');
+
+    $cek_pass = $this->M_pimpinan->cek_password($id_pimpinan);
+
+    //tampil passowrd lama
+    foreach ($cek_pass as $row)
+    {
+      $cek_password = $row->password;
+    }
+
+    if ($password_baru != $password_konfirmasi) {
+      $this->session->set_flashdata('msg', '
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <p>Password konfirmasi anda tidak sesuai</strong>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>');
+      redirect('C_pimpinan/password');
+    }
+
+
+    //cek password lama
+    if (md5($password_lama) != $cek_password ) {
+      $this->session->set_flashdata('msg', '
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <p>Password lama anda tidak sesuai dangan Data</strong>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>');
+      redirect('C_pimpinan/password');
+    }else{
+      $password_baru = array(
+        'password' => md5($password_konfirmasi),
+      );
+
+      $this->M_pimpinan->password_baru($password_baru, $id_pimpinan);
+
+      $this->session->set_flashdata('msg', '
+              <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <p>Passowrd berhasil diganti</strong>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>');
+      redirect('C_pimpinan/profil');
+
+    }
+
+  }
+
   public function bukti_pesanan($kode_pesanan)
   {
     $tampil_kode_pesanan = $this->M_umkm->bukti_pesanan_kode($kode_pesanan);

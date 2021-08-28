@@ -7,6 +7,7 @@
         <div class="card">
           <div class="card-body">
             <h1 align='center' style="margin-bottom: 30px" class="display-4">Profil User</h1>
+            <?= $this->session->flashdata('msg') ?>
 
             <?php
             // var_dump($user);
@@ -27,7 +28,8 @@
               </tr>
 
             </table>
-              <center><a style="margin-top: 20px" href="<?= base_url() ?>C_user/dashboard" class="btn btn-warning btn-sm" >Kembali</a>
+              <center><a style="margin-top: 20px" href="<?= base_url() ?>C_user/password" class="btn btn-danger btn-sm" >Password</a>
+              <a style="margin-top: 20px" href="<?= base_url() ?>C_user/dashboard" class="btn btn-warning btn-sm" >Kembali</a>
               <?php echo form_close();
                 }
               ?>

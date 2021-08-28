@@ -24,6 +24,9 @@
                   <center>Judul Info
                 </th>
                 <th>
+                  <center>Kode Pengambilan
+                </th>
+                <th>
                   <center>Kondisi
                 </th>
                 <th><center>Pilihan</th>
@@ -39,6 +42,7 @@
                 <td><center><?= $no++ ?></td>
                 <td><center><?= $row->tgl_upload; ?></td>
                 <td><center><?= $row->judul_info; ?></td>
+                <td><center><?= $row->kode_pengambilan; ?></td>
                 <td><center><?= $row->kondisi; ?>
                 </td>
                 <td><center>

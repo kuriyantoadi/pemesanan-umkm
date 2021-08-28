@@ -22,6 +22,9 @@
                   <center>Judul Info
                 </th>
                 <th>
+                  <center>Kode Pengambilan
+                </th>
+                <th>
                   <center>UMKM Induk
                 </th>
                 <th><center>Pilihan</th>
@@ -37,10 +40,11 @@
                 <td><center><?= $no++ ?></td>
                 <td><center><?= $row->tgl_upload; ?></td>
                 <td><center><?= $row->judul_info; ?></td>
+                <td><center><?= $row->kode_pengambilan; ?></td>
                 <td><center><?= $row->nama_umkm; ?>
                 </td>
                 <td><center>
-                  <a href="<?php echo site_url('C_masyarakat/info_detail/'.$row->id_info); ?>" class="btn btn-sm btn-success">Detail</a>
+                  <a href="<?php echo site_url('C_masyarakat/info_detail/'.$row->id_info.'/'.$row->kode_pengambilan); ?>" class="btn btn-sm btn-success">Detail</a>
                 </td>
               </tr>
               <?php } ?>

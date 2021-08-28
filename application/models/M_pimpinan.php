@@ -80,6 +80,17 @@ class M_pimpinan extends CI_Model{
       return $hasil;
     }
 
+    function cek_password($id_pimpinan){
+      $this->db->where('id_user', $id_pimpinan);
+      $hasil = $this->db->get('tb_user')->result();
+      return $hasil;
+    }
+
+    function password_baru($password_baru, $id_pimpinan){
+      $this->db->where('id_user', $id_pimpinan);
+      $this->db->update('tb_user',$password_baru);
+    }
+
 }
 
  ?>

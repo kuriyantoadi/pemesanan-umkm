@@ -45,8 +45,8 @@
                 <td><center>
                   <a href="<?php echo site_url('C_umkm/masyarakat_hapus/'.$row->id_masyarakat); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Anda yakin menhapus data <?= $row->nama_masyarakat ?> ?')">Hapus</a>
                   <a href="<?php echo site_url('C_umkm/masyarakat_edit/'.$row->id_masyarakat); ?>" class="btn btn-sm btn-info">Edit</a>
+                  <a href="<?php echo site_url('C_umkm/masyarakat_password/'.$row->id_masyarakat); ?>" class="btn btn-sm btn-warning">Password</a>
                   <a href="<?php echo site_url('C_umkm/masyarakat_detail/'.$row->id_masyarakat); ?>" class="btn btn-sm btn-success">Detail</a>
-
                 </td>
               </tr>
               <?php } ?>

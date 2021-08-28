@@ -39,6 +39,76 @@ class C_user extends CI_Controller {
     $this->load->view('template/footer');
   }
 
+  public function password()
+  {
+    $ses_id_user = $this->session->userdata('ses_id');
+    $data['tampil'] = $this->M_user->profil($ses_id_user);
+
+    $this->load->view('template/header-umkm');
+    $this->load->view('user/password', $data);
+    $this->load->view('template/footer');
+  }
+
+  public function password_up()
+  {
+    $id_user = $this->input->post('id_user');
+    $password_lama = $this->input->post('password_lama');
+    $password_baru = $this->input->post('password_baru');
+    $password_konfirmasi = $this->input->post('password_konfirmasi');
+
+    $cek_pass = $this->M_user->cek_password($id_user);
+
+    //tampil passowrd lama
+    foreach ($cek_pass as $row)
+    {
+      $cek_password = $row->password;
+    }
+
+    if ($password_baru != $password_konfirmasi) {
+      $this->session->set_flashdata('msg', '
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <p>Password konfirmasi anda tidak sesuai</strong>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>');
+      redirect('C_umkm/password');
+    }
+
+
+    //cek password lama
+    if (md5($password_lama) != $cek_password ) {
+      $this->session->set_flashdata('msg', '
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <p>Password lama anda tidak sesuai dangan Data</strong>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>');
+      redirect('C_user/password');
+    }else{
+      $password_baru = array(
+        'password' => md5($password_konfirmasi),
+      );
+
+      $this->M_user->passowrd_baru($password_baru, $id_user);
+
+      $this->session->set_flashdata('msg', '
+              <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <p>Passowrd berhasil diganti</strong>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>');
+      redirect('C_user/profil');
+
+    }
+
+  }
+
 //komoditi awal
   public function komoditi()
   {
@@ -149,6 +219,51 @@ class C_user extends CI_Controller {
     $this->load->view('template/header-user');
     $this->load->view('user/data_umkm', $data);
     $this->load->view('template/footer');
+  }
+
+  public function data_umkm_password($id_umkm)
+  {
+    $data['tampil'] = $this->M_umkm->profil($id_umkm);
+
+    $this->load->view('template/header-user');
+    $this->load->view('user/data_umkm_password', $data);
+    $this->load->view('template/footer');
+  }
+
+  public function data_umkm_password_up()
+  {
+    $id_umkm = $this->input->post('id_umkm');
+    $password_baru = $this->input->post('password_baru');
+    $password_konfirmasi = $this->input->post('password_konfirmasi');
+
+    if ($password_baru != $password_konfirmasi) {
+      $this->session->set_flashdata('msg', '
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <p>Password konfirmasi anda tidak sesuai</strong>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>');
+      redirect('C_umkm/password');
+    }
+
+      $password_baru = array(
+        'password' => md5($password_konfirmasi),
+      );
+
+      $this->M_user->password_umkm($password_baru, $id_umkm);
+
+      $this->session->set_flashdata('msg', '
+              <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                <p>Passowrd berhasil diganti</strong>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>');
+      redirect('C_user/data_umkm');
+
   }
 
   public function data_umkm_tambah()

@@ -74,6 +74,22 @@ class M_user extends CI_Model{
     return $hasil;
   }
 
+  function cek_password($id_user){
+    $this->db->where('id_user', $id_user);
+    $hasil = $this->db->get('tb_user')->result();
+    return $hasil;
+  }
+
+  function passowrd_baru($password_baru, $id_user){
+    $this->db->where('id_user', $id_user);
+    $this->db->update('tb_user',$password_baru);
+  }
+
+  function password_umkm($password_baru, $id_umkm){
+    $this->db->where('id_umkm', $id_umkm);
+    $this->db->update('tb_umkm',$password_baru);
+  }
+
   public function pemesanan()
   {
     $this->db->select('*');

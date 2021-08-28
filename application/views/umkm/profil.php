@@ -8,6 +8,8 @@
           <div class="card-body">
             <h1 align='center' style="margin-bottom: 30px" class="display-4">Profil UMKM</h1>
 
+            <?= $this->session->flashdata('msg') ?>
+
             <?php
             foreach ($tampil as $row) {
             ?>
@@ -34,7 +36,8 @@
               </tr>
 
             </table>
-              <center><a style="margin-top: 20px" href="<?= base_url() ?>C_umkm/dashboard" class="btn btn-warning btn-sm" >Kembali</a>
+              <center><a style="margin-top: 20px" href="<?= base_url() ?>C_umkm/password" class="btn btn-danger btn-sm" >Password</a>
+              <a style="margin-top: 20px" href="<?= base_url() ?>C_umkm/dashboard" class="btn btn-warning btn-sm" >Kembali</a>
               <?php echo form_close();
                 }
               ?>

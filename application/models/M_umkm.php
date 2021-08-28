@@ -104,6 +104,22 @@ class M_umkm extends CI_Model{
     return $hasil;
   }
 
+  function cek_password($id_umkm){
+    $this->db->where('id_umkm', $id_umkm);
+    $hasil = $this->db->get('tb_umkm')->result();
+    return $hasil;
+  }
+
+  function passowrd_baru($password_baru, $id_umkm){
+    $this->db->where('id_umkm', $id_umkm);
+    $this->db->update('tb_umkm',$password_baru);
+  }
+
+  function masyarakat_password_up($password_baru, $id_masyarakat){
+    $this->db->where('id_masyarakat', $id_masyarakat);
+    $this->db->update('tb_masyarakat', $password_baru);
+  }
+
   //kode urut
   public function getMax($table = null, $field = null)
   {
