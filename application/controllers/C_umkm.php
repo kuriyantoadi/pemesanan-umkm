@@ -330,6 +330,25 @@ class C_umkm extends CI_Controller {
 				$this->load->view('template/footer');
 			}
 
+			public function pengambilan()
+			{
+				$ses_id_umkm = $this->session->userdata('ses_id');
+				$data['tampil'] = $this->M_umkm->pengambilan($ses_id_umkm);
+
+				$this->load->view('template/header-umkm');
+				$this->load->view('umkm/pengambilan', $data);
+				$this->load->view('template/footer');
+			}
+
+			public function pengambilan_detail($id_info)
+			{
+				$data['tampil'] = $this->M_umkm->pengambilan_detail($id_info);
+
+				$this->load->view('template/header-umkm');
+				$this->load->view('umkm/pengambilan_detail', $data);
+				$this->load->view('template/footer');
+			}
+
 //menu info akhir
 
 
@@ -743,6 +762,8 @@ class C_umkm extends CI_Controller {
 			}
 
 //akhir gudang komoditi
+
+
 
 
 }

@@ -66,16 +66,19 @@
             <input type="hidden" name="kondisi" value="Sudah Diterima">
             <input type="hidden" name="tgl_pengambilan" value="<?= date('d-m-Y') ?>">
 
-            <?php if (!$data_pengambilan) { ?>
+            <?php
+            if ($data_pengambilan > 0) {
 
-              <textarea style="margin-top: 20px" class="form-control" placeholder="Ulasan Pengambilan Komoditi" name="ulasan_pengambilan" rows="8" cols="80"></textarea>
-              <center><button style="margin-top: 20px" type="submit" class="btn btn-primary btn-sm">Submit</button>
+              foreach ($data_pengambilan as $row) {
+                $cek_kondisi = $row->kondisi;
+              }
+            ?>
+            <p style="margin-top: 20px">Pesanan sudah diambil</p>
 
-            <?php }else { ?>
-
-              <p style="margin-top: 20px">Pesanan sudah diambil</p>
-
-            <?php }  ?>
+          <?php }else { ?>
+            <textarea style="margin-top: 20px" class="form-control" placeholder="Ulasan Pengambilan Komoditi" name="ulasan_pengambilan" rows="8" cols="80"></textarea>
+            <center><button style="margin-top: 20px" type="submit" class="btn btn-primary btn-sm">Submit</button>
+          <?php }  ?>
 
           <?php
           echo form_close();

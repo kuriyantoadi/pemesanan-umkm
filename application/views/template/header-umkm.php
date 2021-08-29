@@ -93,13 +93,6 @@ $ses_id = $this->session->userdata('ses_id');
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="<?= base_url() ?>C_umkm/masyarakat">
-              <i class="mdi mdi-account-card-details menu-icon"></i>
-              <span class="menu-title">Data Masyarakat</span>
-            </a>
-          </li>
-
-          <li class="nav-item">
             <a class="nav-link" href="<?= base_url() ?>C_umkm/data_komoditi">
               <i class="mdi mdi mdi-food-variant menu-icon"></i>
               <span class="menu-title">Data Komoditi</span>
@@ -107,9 +100,23 @@ $ses_id = $this->session->userdata('ses_id');
           </li>
 
           <li class="nav-item">
+            <a class="nav-link" href="<?= base_url() ?>C_umkm/masyarakat">
+              <i class="mdi mdi-account-card-details menu-icon"></i>
+              <span class="menu-title">Data Masyarakat</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a class="nav-link" href="<?= base_url() ?>C_umkm/info">
               <i class="mdi mdi mdi-pin menu-icon"></i>
               <span class="menu-title">Info Masyarakat</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="<?= base_url() ?>C_umkm/pengambilan">
+              <i class="mdi mdi mdi-human-greeting menu-icon"></i>
+              <span class="menu-title">Ulasan Pengambilan Komoditi</span>
             </a>
           </li>
 

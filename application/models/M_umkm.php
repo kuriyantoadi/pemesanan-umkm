@@ -292,6 +292,38 @@ class M_umkm extends CI_Model{
     $this->db->insert('tb_komoditi_umkm',$pesanan_diterima_db);
   }
 
+  public function pengambilan($id_umkm)
+  {
+    $this->db->where('id_umkm', $id_umkm);
+    $hasil = $this->db->get('tb_info')->result();
+    return $hasil;
+  }
+
+  public function pengambilan_detailbc($id_info)
+  {
+    $this->db->where('id_info', $id_info);
+    $hasil = $this->db->get('tb_pengambilan')->result();
+    return $hasil;
+  }
+
+  function pengambilan_detail($id_info){
+    $this->db->select('*');
+    $this->db->from('tb_pengambilan');
+    $this->db->join('tb_masyarakat','tb_masyarakat.id_masyarakat = tb_pengambilan.id_masyarakat');
+    $this->db->where('tb_pengambilan.id_info',$id_info);
+    $query = $this->db->get()->result();
+    return $query;
+  }
+
+  function masyarakat_detail1($id_masyarakat){
+    $this->db->select('*');
+    $this->db->from('tb_masyarakat');
+    $this->db->join('tb_umkm','tb_umkm.id_umkm = tb_masyarakat.id_umkm');
+    $this->db->where('tb_masyarakat.id_masyarakat',$id_masyarakat);
+    $query = $this->db->get()->result();
+    return $query;
+  }
+
 }
 
  ?>

@@ -41,10 +41,11 @@ class C_masyarakat extends CI_Controller {
 
   public function info_detail($id_info, $kode_pengambilan)
   {
+    $id_masyarakat = $this->session->userdata('ses_id');
     $data['ses_id'] = $this->session->userdata('ses_id');
     $data['tampil'] = $this->M_masyarakat->info_detail($id_info);
     $data['kode_pengambilan'] = $this->M_masyarakat->kode_pengambilan($kode_pengambilan);
-    $data['data_pengambilan'] = $this->M_masyarakat->data_pengambilan($id_info);
+    $data['data_pengambilan'] = $this->M_masyarakat->data_pengambilan($id_masyarakat);
 
     $this->load->view('template/header-masyarakat');
     $this->load->view('masyarakat/info_detail', $data);
@@ -161,4 +162,6 @@ class C_masyarakat extends CI_Controller {
             </div>');
     redirect ('C_masyarakat/info');
   }
+
+
 }

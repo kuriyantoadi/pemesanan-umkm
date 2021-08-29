@@ -6,7 +6,7 @@
       <div class="col-md-12 stretch-card">
         <div class="card">
           <div class="card-body">
-            <h1 align='center' style="margin-bottom: 30px" class="display-4">Pengambilan Komoditi</h1>
+            <h1 align='center' style="margin-bottom: 30px" class="display-4">Info Masyarakat</h1>
 
             <?= $this->session->flashdata('msg') ?>
             <table class="table table-bordered table-hover" id="example">

@@ -24,9 +24,9 @@ class M_masyarakat extends CI_Model{
     $this->db->insert('tb_pengambilan',$tambah_pengambilan);
   }
 
-  function data_pengambilan($id_info)
+  function data_pengambilan($id_masyarakat)
   {
-    $this->db->where('id_info', $id_info);
+    $this->db->where('id_masyarakat', $id_masyarakat);
     $hasil = $this->db->get('tb_pengambilan')->result();
     return $hasil;
   }
@@ -54,6 +54,18 @@ class M_masyarakat extends CI_Model{
     $this->db->update('tb_masyarakat',$password_baru);
   }
 
+  function pengambilan($ses_id_masyarakat)
+  {
+    $this->db->where('id_umkm', $ses_id_masyarakat);
+    $hasil = $this->db->get('tb_info')->result();
+    return $hasil;
+  }
+
+  function cek_umkm($id_masyarakat){
+    $this->db->where('id_masyarakat', $id_masyarakat);
+    $hasil = $this->db->get('tb_masyarakat')->result();
+    return $hasil;
+  }
 
 }
 
