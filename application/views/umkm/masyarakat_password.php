@@ -36,7 +36,7 @@
 
             </table>
             <center> <button style="margin-top: 20px" type="submit" class="btn btn-primary btn-sm">Submit</button>
-              <a style="margin-top: 20px" href="<?= base_url() ?>C_masyarakat/dashboard" class="btn btn-warning btn-sm" >Kembali</a>
+              <a style="margin-top: 20px" href="<?= base_url() ?>C_umkm/dashboard" class="btn btn-warning btn-sm" >Kembali</a>
               <?php echo form_close();
                 }
               ?>
